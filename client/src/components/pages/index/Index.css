@@ -1,0 +1,89 @@
+.firstSec {
+
+    margin-top: 5%;
+    background-image: url('./fondo.jpg');
+    width: 100vw;
+    height: 90vh;
+    background-size: cover;
+    
+}
+
+.paragraph {
+    position: absolute;
+    width: 30%;
+    color: white;
+    font-size: 3em;
+    font-weight: 400;
+    top: 35%;
+    left: 10%;
+}
+
+.logoArt {
+    width: 60px;
+    object-fit: cover;
+}
+
+.secondSec {
+    margin: 80px 0;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article h3 {
+    padding: 5% 0;
+}
+
+.article > p {
+    font-size: 1.3em;
+}
+
+.thirdSec {
+    background-color: #F34D4D;
+    width: 100vw;
+    margin: 80px 0;
+} 
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.whiteBtnIdx{
+    padding: 10px 15px;
+    border: solid 3px #F34D4D;
+    border-radius: 20px;
+    color: #F34D4D;
+    font-size: 1.2em;
+    transition: all 0.2s;
+}
+
+.whiteBtnIdx:hover {
+    color: #F34D4D;
+    transform: scale(1.2);
+}
+
+.redBtnIdx {
+    padding: 10px 15px;
+    border: solid 3px #F34D4D;
+    border-radius: 20px;
+    color: white;
+    background-color: #F34D4D;
+    font-size: 1.2em;
+    transition: all 0.2s;
+
+}
+
+.redBtnIdx:hover {
+    color:white;
+    transform: scale(1.2);
+
+}
+ 
+.fourthSec {
+    background-color: #F34D4D;
+    width: 100vw;
+}

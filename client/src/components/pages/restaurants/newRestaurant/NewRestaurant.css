@@ -1,0 +1,21 @@
+.form {
+    margin-top: 15%;
+}
+
+.form > h1 {
+    padding-bottom: 5%;
+}
+
+.redBtn {
+    padding: 10px 15px;
+    border: solid 3px #F34D4D;
+    border-radius: 20px;
+    color: white;
+    background-color: #F34D4D;
+    font-size: 1.2em;
+}
+
+.redBtn:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}

@@ -7,6 +7,8 @@ import Restaurants from '../restaurants/Restaurants'
 import NewRestaurant from '../restaurants/newRestaurant/NewRestaurant'
 import Data from '../data/Data'
 import Profile from '../auth/Profile'
+import Signup from '../signup/Signup'
+import Login from '../login/Login'
 
 import AuthService from '../../../services/auth.service'
 
@@ -34,7 +36,8 @@ class App extends Component {
   }
 
 
-    render() {
+  render() {
+      
     return (
         <>
             
@@ -50,8 +53,13 @@ class App extends Component {
                 <Route path='/new' exact render={props => <NewRestaurant {...props} /> } />
           
                 <Route path='/data' render={() => <Data />} />
-                <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to='/login'/>} />
+                {/* <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to='/login' />} /> */}
+          
+                <Route path='/profile' render={props => <Profile {...props}/>} />
 
+                <Route path='/signup' render={props => <Signup setTheUser={this.setTheUser} {...props}/>} />
+
+                <Route path='/login' render={props => <Login setTheUser={this.setTheUser} {...props}/>} />
 
 
             </Switch>

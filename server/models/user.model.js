@@ -15,7 +15,7 @@ const userSchema = new Schema({
         default: 'password'
     },
 
-    picture: {
+    imageUrl: {
         type: String
     },
 

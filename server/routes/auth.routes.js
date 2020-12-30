@@ -11,9 +11,6 @@ router.post('/signup', (req, res, next) => {
 
      const username = req.body.username;
      const password = req.body.password;
-     const email = req.body.email
-     const cif = req.body.cif
-     const associationName = req.body.associationName
      const imageUrl = req.body.imageUrl
 
     if (!username || !password) {
@@ -50,24 +47,14 @@ router.post('/signup', (req, res, next) => {
 
         const salt = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
-        if (req.body.cif) {
-            aNewUser = new User({ //
+
+            aNewUser = new User({ 
                 username: username,
                 password: hashPass,
-                cif: cif,
-                email: email,
-                associationName: associationName,
-                imageUrl: imageUrl
+                imageUrl: imageUrl,
 
             });
-        } else {
-            aNewUser = new User({ //
-                username: username,
-                password: hashPass,
-                email: email,
-
-            });
-        }
+        
 
         aNewUser.save(err => {
             if (err) {
@@ -78,21 +65,22 @@ router.post('/signup', (req, res, next) => {
             }
 
             
-            req.login(aNewUser, (err) => {
+            // req.login(aNewUser, (err) => {
 
-                if (err) {
-                    res.status(500).json({
-                        message: 'Login error'
-                    });
-                    return;
-                }
+            //     if (err) {
+            //         // res.status(500).json({
+            //         //     message: 'Login error'
+            //         // });
+            //         console.log('login error')
+            //         return;
+            //     }
 
                 
-                res.status(200).json(aNewUser);
-            });
+              res.status(200).json(aNewUser);
+             });
         });
     });
-});
+// });
 
 
 router.post('/login', (req, res, next) => {
@@ -101,6 +89,7 @@ router.post('/login', (req, res, next) => {
             res.status(500).json({
                 message: 'Error authenticating user'
             });
+            console.log('1')
             return;
         }
 
@@ -116,6 +105,7 @@ router.post('/login', (req, res, next) => {
                 res.status(500).json({
                     message: 'Session error'
                 });
+                console.log('2')
                 return;
             }
 

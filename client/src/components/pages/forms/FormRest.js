@@ -61,8 +61,6 @@ class FormRest extends Component {
          
         uploadData.append('imageUrl', e.target.files[0])
 
-        console.log(e.target.files)
-
         this.fileService
             .uploadImage(uploadData)
             .then(response => this.setState({

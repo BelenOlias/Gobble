@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import { useState, useEffect } from 'react'
 
 import Form from 'react-bootstrap/Form'
@@ -19,7 +18,7 @@ function FormAutocomplete(props) {
         const latLng = await getLatLng(results[0])
         setAddress(value)
         setCoords(latLng)
-        await props.getCoords(props.value, [latLng.lat, latLng.lng])
+        await props.getCoords(value, [latLng.lat, latLng.lng])
     }
 
     return (

@@ -47,7 +47,7 @@ class App extends Component {
                 <Route path='/restaurants' exact render={() => <Restaurants />} />
           
                 {/* <Route path='/new' exact render={() => this.state.loggedInUser.role === 'admin' ? <NewRestaurant /> : <Redirect to='/' />} /> */}
-                <Route path='/new' exact render={() => <NewRestaurant /> } />
+                <Route path='/new' exact render={props => <NewRestaurant {...props} /> } />
           
                 <Route path='/data' render={() => <Data />} />
                 <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to='/login'/>} />

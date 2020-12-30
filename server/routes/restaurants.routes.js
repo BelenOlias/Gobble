@@ -24,8 +24,8 @@ router.get('/getOneRest/:rest_id', (req, res) => {
 router.post('/newRest', (req, res) => {
 
     Restaurant.create(req.body)
-        .then(response => res.json(Response))
-        .catch(error => res.status(500).json(error))
+        .then(response => res.json(response))
+        .catch(error => console.log(error))
 })
 
 router.put('/editRest/:rest_id', (req, res) => {

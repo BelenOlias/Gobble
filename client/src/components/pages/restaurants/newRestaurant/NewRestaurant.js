@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import './NewRestaurant.css'
 
-const NewRestaurant = () => {
+const NewRestaurant = (props) => {
 
     return (
             
@@ -15,7 +15,7 @@ const NewRestaurant = () => {
                 
                 <h1>Añade un nuevo restaurante</h1>
 
-                <FormRest /><br></br>
+                <FormRest {...props}/><br></br>
 
                 <Link to='restaurants' className='redBtn'>Volver</Link>
 

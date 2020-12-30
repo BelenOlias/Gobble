@@ -3,33 +3,93 @@ import { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-import { Link } from 'react-router-dom'
-
 import './FormRest.css'
 
 import FormAutocomplete from './FormAutocomplete'
 
+import FileService from '../../../services/file.service'
+import RestService from '../../../services/restaurant.service'
+
 class FormRest extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
-            name: '',
 
+            restaurant: {
+            name: '',
+            price: '',
+            cooking: '',
+            description: '',
+            address: '',
+            email: '',
+            phone: '',
+            imageUrl: ''
+            },
+
+            uploadingImage: ''
+           
         }
+
+        this.fileService = new FileService()
+        this.restService = new RestService()
     }
 
     handleInputChange = e => {
 
         const { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({restaurant: {...this.state.restaurant, [name]: value }  })
 
+    }
+
+    handleCheckbox = e => {
+
+        const target = e.target;
+        const value = target.checked
+        const name = target.name
+        this.setState({restaurant: {...this.state.restaurant, cooking: {...this.state.restaurant.cooking, [name]: value}}})
+
+    }
+
+
+    handleImageUpload = e => {
+
+        this.setState({ uploadingImage: true })
+
+        const uploadData = new FormData()
+         
+        uploadData.append('imageUrl', e.target.files[0])
+
+        console.log(e.target.files)
+
+        this.fileService
+            .uploadImage(uploadData)
+            .then(response => this.setState({
+                restaurant: { ...this.state.restaurant, imageUrl: response.data.secure_url },
+                uploadingImage: false
+            }))
+            .catch(error => console.log('Error!', error))
+         
+    }
+
+    handleFormSubmit = e => {
+
+        e.preventDefault()
+
+        this.restService
+            .newRest(this.state.restaurant)
+            .then(() => {
+                console.log('Creado')
+                this.props.history.push('/restaurants')
+            })
+            .catch(err => console.log(err))
+        
     }
 
     getCoords = (address, coords) => {
 
-        this.setState({ location: { lat: coords[0], lng: coords[1], address }, address })
+        this.setState({ restaurant: { ...this.state.restaurant, location: { lat: coords[0], lng: coords[1], address }, address } })
     }
 
     render() {
@@ -37,7 +97,7 @@ class FormRest extends Component {
         return (
         
             <>
-                <Form>
+                <Form onSubmit={this.handleFormSubmit}>
                 
                     <Form.Row>
 
@@ -53,8 +113,10 @@ class FormRest extends Component {
       
                             <Form.Label className='label side'>Precio</Form.Label>
       
-                            <Form.Control as="select" defaultValue="Elige">
+                            <Form.Control name='price' as="select" onChange={this.handleInputChange}>
         
+                                <option>Elige</option>
+                               
                                 <option>€</option>
         
                                 <option>€€</option>
@@ -69,25 +131,25 @@ class FormRest extends Component {
                     
                     </Form.Row>
                 
-                    <Form.Group as={Col} controlId="cooking">
+                    <Form.Group as={Col} controlId="cooking" >
       
                         <Form.Label className='label'>Tipo de cocina</Form.Label><br></br>
       
-                        <Form.Check inline type="checkbox" label="Italiana" />
-                        <Form.Check inline type="checkbox" label="Nouvelle cuisine" />
-                        <Form.Check inline type="checkbox" label="Mediterránea" />
-                        <Form.Check inline type="checkbox" label="Vegetariana" />
-                        <Form.Check inline type="checkbox" label="Vegana" />
-                        <Form.Check inline type="checkbox" label="Sin gluten" />
-                        <Form.Check inline type="checkbox" label="Sin lactosa" />
-                        <Form.Check inline type="checkbox" label="Asiática" />
-                        <Form.Check inline type="checkbox" label="Tapas" />
-                        <Form.Check inline type="checkbox" label="Marisco" />
-                        <Form.Check inline type="checkbox" label="Asador" />
-                        <Form.Check inline type="checkbox" label="Buffet" />
-                        <Form.Check inline type="checkbox" label="Brunch" />
-                        <Form.Check inline type="checkbox" label="Internacional" />
-                        <Form.Check inline type="checkbox" label="Americana" />
+                        <Form.Check inline type="checkbox" label="Italiana" name='italiana' onChange={this.handleCheckbox} />
+                        <Form.Check inline type="checkbox" label="Nouvelle cuisine" name='nouvelle' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Mediterránea" name='mediterranea' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Vegetariana" name='vegetariana' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Vegana" name='vegana' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Sin gluten" name='gluten' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Sin lactosa" name='lactosa' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Asiática" name='asiatica' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Tapas" name='tapas' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Marisco" name='marisco' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Asador" name='asador' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Buffet" name='buffet' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Brunch" name='brunch' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Internacional" name='internacional' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Americana" name='americana' onChange={this.handleCheckbox}/>
     
                     </Form.Group>
 
@@ -95,13 +157,13 @@ class FormRest extends Component {
     
                         <Form.Label className='label'>Descripción</Form.Label>
     
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control name='description' as="textarea" rows={3} onChange={this.handleInputChange}/>
   
                     </Form.Group>
 
                     <Form.Row>
      
-                        <Form.Group as={Col} controlId="Address">
+                        <Form.Group as={Col} controlId="address">
                             
                             <Form.Label className='label'>Dirección</Form.Label>
 
@@ -117,7 +179,7 @@ class FormRest extends Component {
      
                             <Form.Label className='label'>Email</Form.Label>
       
-                            <Form.Control type="email" />
+                            <Form.Control name='email' type="email" onChange={this.handleInputChange}/>
     
                         </Form.Group>
 
@@ -125,13 +187,21 @@ class FormRest extends Component {
       
                             <Form.Label className='label'>Teléfono</Form.Label>
       
-                            <Form.Control />
+                            <Form.Control name='phone' onChange={this.handleInputChange}/>
     
+                        </Form.Group>
+
+                        <Form.Group controlId="image">
+      
+                            <Form.Label className='label'>Seleccionar imagen</Form.Label>
+      
+                            <Form.Control name='imageUrl' type='file' onChange={this.handleImageUpload} />
+                                
                         </Form.Group>
   
                     </Form.Row>
 
-                    <button className='whiteBtn' type='submit'>Añadir</button>
+                    <button className='whiteBtn' disabled={this.state.uploadingImage} type='submit'>{this.state.uploadingImage ? 'Añadiendo...' : 'Añadir'}</button>
 
                 </Form>
             </>

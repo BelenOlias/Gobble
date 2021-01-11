@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Navigation from '../../layout/navigation/Navbar'
 import Index from '../index/Index'
 import Restaurants from '../restaurants/Restaurants'
+import RestDetails from '../restaurants/details/RestDetails'
 import NewRestaurant from '../restaurants/newRestaurant/NewRestaurant'
 import Data from '../data/Data'
 import Profile from '../auth/Profile'
@@ -41,21 +42,19 @@ class App extends Component {
     return (
         <>
             
-            <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser }/>
+        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
         
             <Switch>
 
                 <Route path='/' exact render={() => <Index />} />
             
-                <Route path='/restaurants' exact render={() => <Restaurants />} />
+                <Route path='/restaurants' exact render={(props) => <Restaurants loggedInUser={this.state.loggedInUser} {...props} />} />
           
-                {/* <Route path='/new' exact render={() => this.state.loggedInUser.role === 'admin' ? <NewRestaurant /> : <Redirect to='/' />} /> */}
-                <Route path='/new' exact render={props => <NewRestaurant {...props} /> } />
+                <Route path='/details/:restaurant_id' render={(props) => this.state.loggedInUser ? <RestDetails loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to='/login' />} />
+                <Route path='/new' exact render={(props) => this.state.loggedInUser && this.state.loggedInUser.role === 'admin' ? <NewRestaurant {...props}/> : <Redirect to='/' />} />
           
                 <Route path='/data' render={() => <Data />} />
-                {/* <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to='/login' />} /> */}
-          
-                <Route path='/profile' render={props => <Profile {...props}/>} />
+                <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to='/login' />} />
 
                 <Route path='/signup' render={props => <Signup setTheUser={this.setTheUser} {...props}/>} />
 

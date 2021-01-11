@@ -12,7 +12,7 @@ const ratingSchema = new Schema({
         ref: 'Restaurant'
     },
 
-    user: {
+    author: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User'
     }

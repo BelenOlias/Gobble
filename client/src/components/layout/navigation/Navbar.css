@@ -27,7 +27,7 @@
     transform: scale(1.2);
 }
 
-.nav div {
+.nav > div {
     font-weight: 300;
     font-size: 1.2em;
 }

@@ -20,7 +20,7 @@ class FormRest extends Component {
             restaurant: {
             name: '',
             price: '',
-            cooking: '',
+            cooking: [],
             description: '',
             address: '',
             email: '',
@@ -46,9 +46,10 @@ class FormRest extends Component {
     handleCheckbox = e => {
 
         const target = e.target;
-        const value = target.checked
         const name = target.name
-        this.setState({restaurant: {...this.state.restaurant, cooking: {...this.state.restaurant.cooking, [name]: value}}})
+        const cooking = this.state.restaurant.cooking
+        const newCooking = [...cooking, name]
+        this.setState({ restaurant: { ...this.state.restaurant, cooking: newCooking }})
 
     }
 
@@ -141,7 +142,8 @@ class FormRest extends Component {
                         <Form.Check inline type="checkbox" label="Sin gluten" name='gluten' onChange={this.handleCheckbox}/>
                         <Form.Check inline type="checkbox" label="Sin lactosa" name='lactosa' onChange={this.handleCheckbox}/>
                         <Form.Check inline type="checkbox" label="Asiática" name='asiatica' onChange={this.handleCheckbox}/>
-                        <Form.Check inline type="checkbox" label="Tapas" name='tapas' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Mexicana" name='mexicana' onChange={this.handleCheckbox}/>
+                        <Form.Check inline type="checkbox" label="Tapas" name='tapas' onChange={this.handleCheckbox} />
                         <Form.Check inline type="checkbox" label="Marisco" name='marisco' onChange={this.handleCheckbox}/>
                         <Form.Check inline type="checkbox" label="Asador" name='asador' onChange={this.handleCheckbox}/>
                         <Form.Check inline type="checkbox" label="Buffet" name='buffet' onChange={this.handleCheckbox}/>
@@ -199,9 +201,10 @@ class FormRest extends Component {
   
                     </Form.Row>
 
-                    <button className='whiteBtn' disabled={this.state.uploadingImage} type='submit'>{this.state.uploadingImage ? 'Añadiendo...' : 'Añadir'}</button>
+                    <button className='whiteBtn' disabled={this.state.uploadingImage} type='submit' onClick={this.handleFormSubmit}>{this.state.uploadingImage ? 'Añadiendo...' : 'Añadir'}</button>
 
                 </Form>
+                
             </>
         )
     }

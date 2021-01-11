@@ -12,9 +12,9 @@ router.get('/getRests', (req, res) => {
         .catch(error => res.status(500).json(error))
 })
 
-router.get('/getOneRest/:rest_id', (req, res) => {
+router.get('/getOneRest/:restaurant_id', (req, res) => {
 
-    const id = req.params.rest_id
+    const id = req.params.restaurant_id
 
     Restaurant.findById(id)
         .then(response => res.json(response))
@@ -49,4 +49,5 @@ router.delete('/:rest_id/delete', (req, res) => {
         .catch(error => res.status(500).json(error))
 
 })
+
 module.exports = router

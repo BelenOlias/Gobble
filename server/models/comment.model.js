@@ -8,8 +8,7 @@ const commentSchema = new Schema({
     },
 
     author: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User'
+        type: Object
     },
 
     restaurant: {

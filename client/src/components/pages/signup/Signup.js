@@ -62,6 +62,7 @@ const Signup = (props) => {
             .signup(user)
             .then(response => {
                 props.setTheUser(response.data)
+                props.history.push('/profile')
             })
             .catch(err => console.log(err))
 
@@ -71,14 +72,14 @@ const Signup = (props) => {
         
         <Container>
             
-            <Row>
+            <section className='signupPage'>
+            
+                <h1>Crea tu cuenta</h1>
+            
+                <Row>
                 
-                <Col>
+                    <Col>
             
-                    <section className='signupPage'>
-            
-                        <h1>Crea tu cuenta</h1>
-
                         <Form onSubmit={handleFormSubmit}>
 
                             <Form.Row>
@@ -99,7 +100,7 @@ const Signup = (props) => {
 
                                     <Form.Label>Contraseña</Form.Label>
 
-                                    <Form.Control name='password' onChange={handleInputChange}/>
+                                    <Form.Control name='password' type='password' onChange={handleInputChange}/>
                     
                                 </Form.Group>
                 
@@ -121,11 +122,9 @@ const Signup = (props) => {
 
                         </Form>
                 
-                    </section>
-                    
-                </Col>
+                    </Col>
                 
-                <Col>
+                    <Col>
 
                     
                     {/* <svg version='1.1' id='icon' xmlns='http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd' x='0px' y='0px' viewBox="0 0 30 30" enable-background="new 0 0 30 30" xmlSpace="preserve">
@@ -135,9 +134,11 @@ const Signup = (props) => {
                     c0,2.8,2.3,5.1,5.1,5.1h4.4l-0.5,4.4c0,1,0.8,1.8,1.8,1.8h8c1,0,1.8-0.8,1.8-1.9l-0.5-4.3h4.4c2.8,0,5.1-2.3,5.1-5.1V5.8,0.6z"/>
                     </svg> */}
 
-                </Col>
+                    </Col>
                 
-            </Row>
+                </Row>
+                
+            </section>
 
         </Container>
     )

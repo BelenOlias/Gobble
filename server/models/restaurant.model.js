@@ -16,9 +16,7 @@ const restaurantSchema = new Schema({
     description: {
         type: String
     },
-
-    city: String,
-
+    
     location: {
         address: String,
         lat: String,
@@ -46,7 +44,7 @@ const restaurantSchema = new Schema({
         type: []
     }, 
 
-    pictures: [String]
+    imageUrl: String
 
 },
 {

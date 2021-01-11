@@ -1,10 +1,18 @@
+import Container from 'react-bootstrap/Container'
 
-export default function Profile() {
+import './Profile.css'
+export default function Profile(props) {
 
     return (
+
+        <Container>
         
-        <>
-            <h1>Tu perfil</h1>
-        </>
+            <section className='profile'>
+                
+                <h1>Hola, {props.loggedInUser.username}!</h1>
+
+            </section>
+            
+        </Container>
     )
 }

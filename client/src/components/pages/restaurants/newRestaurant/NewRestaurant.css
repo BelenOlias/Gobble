@@ -1,9 +1,11 @@
 .form {
     margin-top: 15%;
+    padding-bottom: 10%;
 }
 
 .form > h1 {
     padding-bottom: 5%;
+    font-weight: 300;
 }
 
 .redBtn {

@@ -41,8 +41,7 @@ class Login extends Component {
                     this.setState({ message: response })
                     this.props.setTheUser(response.data)
 
-                    //this.props.history.push('/')
-                    this.props.closeModal()
+                    this.props.history.push('/profile')
                 })
                 .catch(err => console.log('Erroooooor:', { err }))
         }

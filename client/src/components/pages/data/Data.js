@@ -6,9 +6,13 @@ const Data = () => {
 
     return (
         
-       <Container>
-        
-            <h1 className='title'>Some data</h1>
+        <Container>
+            
+            <section className='data'>
+
+                <h1>Some data</h1>
+
+            </section>
             
         </Container>
     )

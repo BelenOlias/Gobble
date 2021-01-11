@@ -1,9 +1,28 @@
 .index {
-    margin-top: 12%;
-    padding-left: 5%;
+    margin-top: 15%;
 }
 
 .index h1 {
     font-size: 2.4em;
     font-weight: 300;
+    padding-bottom: 5%;
 }
+
+.adminLink {
+
+    padding: 15px;
+    border: 1px solid #F34D4D;
+    border-radius: 15px;
+    color: #F34D4D;
+    font-size: 1.3em;
+}
+
+.adminLink:hover {
+    background-color: #F34D4D;
+    color: white;
+}
+
+.list {
+    margin-top: 10%;
+}
+

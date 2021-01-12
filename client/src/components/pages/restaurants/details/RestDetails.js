@@ -76,6 +76,19 @@ const RestDetails = (props) => {
 
     const [userRating, setUserRating] = useState(null)
 
+    function findUserRating() {
+
+        ratingService
+            .getRestaurantRatings(props.match.params.restaurant_id)
+            .then((response) => {
+                let data = response.data
+                data.map(elm => elm.author === props.loggedInUser._id ? setUserRating(elm.rating) : null)
+            })
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => { findUserRating() }, [])
+
 
     //Rating Form
 

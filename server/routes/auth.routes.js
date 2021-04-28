@@ -2,7 +2,6 @@ const express = require("express")
 const router = express.Router()
 const passport = require("passport")
 const bcrypt = require("bcrypt")
-// const transporter = require('../configs/nodemailer.config')
 
 const User = require("../models/user.model")
 
@@ -134,33 +133,5 @@ router.get('/loggedin', (req, res, next) => {
     });
 });
 
-// router.post('/sendEmail', (req, res) => {
-
-//     let {
-//         emailUser,
-//         emailOwner,
-//         subject,
-//         message
-//     } = req.body
-
-//     let mail = {
-//         from: emailUser,
-//         to: emailOwner,
-//         subject: subject,
-//         text: message,
-//         html: `<b>${message}</b>`
-//     }
-
-//     transporter.sendMail(mail, (err, data) => {
-//         if (err) {
-            
-//             res.status(500).send({ status: 'FAIL', msg: 'Internal error: email not sent' })
-
-//         } else {
-            
-//             res.status(200).json({ status: 'OK', msg: 'Email sent' })
-//         }
-//     })
-// })
 
 module.exports = router

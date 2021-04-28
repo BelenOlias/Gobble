@@ -5,8 +5,6 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import authService from '../../../services/auth.service'
 
-import MyComponent from './Vivus'
-
 import './Login.css'
 class Login extends Component {
     constructor(props) {
@@ -101,8 +99,6 @@ class Login extends Component {
                     </Form>
                     
                 </section>
-
-                <MyComponent />
 
             </Container>
 

@@ -32,7 +32,6 @@ class Restaurants extends Component {
 
     render() {
 
-        console.log(this.state)
         return (
 
                 <Container>
@@ -41,9 +40,9 @@ class Restaurants extends Component {
 
                         <h1>Todos los restaurantes</h1>
                     
-                        {this.props.loggedInUser && <div>
+                    {this.props.loggedInUser && <div style={{minHeight: '80px'}}><br></br>
 
-                            {this.props.loggedInUser.role === 'admin' && <Link to='/new' style={{textDecoration: 'none'}} className='adminLink'>Añade un nuevo restaurante</Link>}
+                            {this.props.loggedInUser.role === 'admin' && <Link to='/new' style={{textDecoration: 'none', height: '100%'}} className='adminLink'>Añade un nuevo restaurante</Link>}
 
                         </div>}
                     

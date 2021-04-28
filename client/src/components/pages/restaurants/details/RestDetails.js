@@ -57,7 +57,6 @@ const RestDetails = (props) => {
 
                 if (data.length > 1) {
                     let media = sum / data.length
-                    console.log('1')
                     setRatingMedia(media.toFixed(1))
                 } else {
                     let media = sum
@@ -69,7 +68,7 @@ const RestDetails = (props) => {
     }
 
 
-    useEffect(() => { findRatings() }, [])
+    useEffect(() => { findRatings() }, [ratingMedia])
 
 
     //User
@@ -137,7 +136,6 @@ const RestDetails = (props) => {
             .getRestaurantComments(props.match.params.restaurant_id)
             .then((response => {
                 setComments(response.data)
-                console.log(props.loggedInUser)
             }))
             .catch(err => console.log(err))
     }
@@ -184,7 +182,7 @@ const RestDetails = (props) => {
 
                     <Col lg={4}>
 
-                        {ratingMedia && <p>{ratingMedia}<img src={star} alt='estrella' style={{ width: '5%', height: '4%', objectFit: 'cover', marginLeft: '1%' }} /></p>}
+                        {ratingMedia && <p>{ratingMedia}<img src={star} alt='estrella' style={{ width: '5%', height: '4%', objectFit: 'cover', marginLeft: '1%' , marginBottom: '1%' }} /></p>}
 
                         {userRating && <p>Tu valoración: {userRating}</p>}
 

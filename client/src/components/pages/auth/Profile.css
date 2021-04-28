@@ -4,4 +4,20 @@
 
 .profile h1 {
     font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.profileBtn {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 300;
+    transition: all 0.1s;
+}
+
+.profileBtn:hover {
+    transform: scale(1.1);
 }

@@ -18,14 +18,18 @@ class App extends Component {
     constructor() {
     super()
     this.state = {
-      loggedInUser: undefined
+      loggedInUser: undefined,
+      endpoint: 'localhost:5000',
     }
     
     this.authService = new AuthService()
 
   }
 
-  componentDidMount = () => this.fetchUser()
+  componentDidMount = () => {
+    
+    this.fetchUser()
+  }
 
   setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El usuario es', this.state.loggedInUser))
 
@@ -58,8 +62,7 @@ class App extends Component {
 
                 <Route path='/signup' render={props => <Signup setTheUser={this.setTheUser} {...props}/>} />
 
-                <Route path='/login' render={props => <Login setTheUser={this.setTheUser} {...props}/>} />
-
+                <Route path='/login' render={props => <Login setTheUser={this.setTheUser} {...props} />} />
 
             </Switch>
             

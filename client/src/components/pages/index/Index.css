@@ -1,13 +1,12 @@
 .firstSec {
 
     margin-top: 5%;
-    background-image: url('./fondo.jpg');
+    background-image: url('./img/fondo.jpg');
     background-repeat: no-repeat;
     width: 100vw;
-    height: 90vh;
+    height: 95vh;
     background-size: cover;
-    overflow-x: hidden;
-
+    margin-right: 2%
 }
 
 .paragraph {
@@ -27,6 +26,8 @@
 
 .secondSec {
     margin: 80px 0;
+    width: 100vw;
+
 }
 
 .article {
@@ -44,10 +45,21 @@
 }
 
 .thirdSec {
-    background-color: #F34D4D;
+   
     width: 100vw;
     margin: 80px 0;
 } 
+
+.thirdSec.red {
+    background-color: #F34D4D;
+    transition: all 0.8s;
+}
+
+.paragraph.black {
+    color: black;
+    text-align: center;
+    width: 70%;
+}
 
 .buttons {
     display: flex;

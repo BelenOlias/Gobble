@@ -16,7 +16,7 @@ router.get('/getRestaurantRatings/:restaurant_id', (req, res) => {
 
     const id = req.params.restaurant_id
 
-    Rating.find({restaurant: id})
+    Rating.find({ restaurant: { _id: id }})
         .then(response => res.json(response))
         .catch(error => res.status(500).json(error))
 })
